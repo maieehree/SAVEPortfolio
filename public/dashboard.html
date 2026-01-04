@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - savePortfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navbar Mobile -->
+    <nav class="navbar" style="position: sticky;">
+        <div class="logo">PortfolioPro</div>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <span id="user-display">User</span>
+            <button class="btn btn-outline" id="logout-btn"
+                style="padding: 0.5rem 1rem; font-size: 0.9rem;">Logout</button>
+        </div>
+    </nav>
+
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <div
+                    style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white;">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h3 id="sidebar-name">User Name</h3>
+                <p style="font-size: 0.9rem;">Student</p>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="#" class="nav-link active" onclick="switchTab('portfolio')"><i class="fas fa-th-large"></i>
+                        My Portfolio</a></li>
+                <li><a href="#" class="nav-link" onclick="switchTab('add-new')"><i class="fas fa-plus-circle"></i> Add
+                        New Work</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Portfolio View -->
+            <div id="view-portfolio">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <h2>ผลงานของคุณมาเก็บในนี้ได้เลย</h2>
+                    <button class="btn btn-primary" onclick="switchTab('add-new')"><i class="fas fa-plus"></i>
+                        New</button>
+                </div>
+
+                <div class="portfolio-grid" id="portfolio-container">
+                    <!-- JS will populate cards here -->
+                </div>
+
+                <div id="empty-state" style="text-align: center; padding: 4rem; display: none;">
+                    <i class="fas fa-folder-open"
+                        style="font-size: 4rem; color: var(--glass-border); margin-bottom: 1rem;"></i>
+                    <h3>ไม่พบผลงาน</h3>
+                    <p>เริ่มต้นด้วยการเพิ่มผลงานแรกของคุณ!</p>
+                </div>
+            </div>
+
+            <!-- Add New View -->
+            <div id="view-add-new" style="display: none;">
+                <h2 style="margin-bottom: 2rem;">เพิ่มผลงานใหม่</h2>
+                <div class="glass-panel" style="max-width: 800px;">
+                    <form id="add-work-form">
+                        <div class="input-group">
+                            <label>ชื่อผลงาน</label>
+                            <input type="text" class="input-field" placeholder="e.g. Science Fair 2024" required
+                                id="work-title">
+                        </div>
+
+                        <div class="input-group">
+                            <label>Description</label>
+                            <textarea class="input-field" rows="4" placeholder="Describe what you did..."
+                                id="work-desc"></textarea>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                            <div class="input-group">
+                                <label>Level</label>
+                                <select class="input-field" id="work-level">
+                                    <option value="school"> งานแข่งระดับนานาชาติ</option>
+                                    <option value="provincial">งานแข่งระดับประเทศ</option>
+                                    <option value="regional">งานแข่งระดับภาค</option>
+                                    <option value="national">งานแข่งระดับจังหวัด</option>
+                                    <option value="international">งานแข่งระดับโรงเรียน</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label>Upload Image</label>
+                                <input type="file" class="input-field" accept="image/*" required id="work-image">
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 2rem; text-align: right;">
+                            <button type="button" class="btn btn-outline" onclick="switchTab('portfolio')"
+                                style="margin-right: 1rem;">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save Achievement</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Modal for Detailed View -->
+    <div id="detail-modal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content glass-panel" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            <div class="modal-body">
+                <img id="modal-image" src="" alt="Work Image" class="modal-img">
+                <div class="modal-info">
+                    <span id="modal-badge" class="badge">Level</span>
+                    <h2 id="modal-title" style="margin-top: 1rem;">Title</h2>
+                    <p id="modal-date" style="font-size: 0.9rem; margin-bottom: 1rem;">Date</p>
+                    <p id="modal-desc" style="white-space: pre-wrap;">Description</p>
+                    <a id="modal-download" href="#" class="btn btn-primary" download
+                        style="margin-top: 2rem; width: 100%;">
+                        <i class="fas fa-download"></i> Download Original
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Check Auth on Load
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser) {
+            window.location.href = 'auth.html';
+        } else {
+            document.getElementById('user-display').innerText = currentUser.name;
+            document.getElementById('sidebar-name').innerText = currentUser.name;
+            loadPortfolio();
+        }
+    </script>
+</body>
+
+</html>

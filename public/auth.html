@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - PortfolioPro</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="auth-container">
+
+        <div class="glass-panel" style="max-width: 450px; width: 100%; position: relative; overflow: hidden;">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2 id="auth-title">Welcome Back</h2>
+                <p id="auth-subtitle">Enter your details to access your portfolio</p>
+            </div>
+
+            <!-- Login Form -->
+            <form id="login-form">
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" class="input-field" placeholder="name@example.com" required id="login-email">
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" class="input-field" placeholder="••••••••" required id="login-password">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Sign In</button>
+            </form>
+
+            <!-- Register Form (Hidden by default) -->
+            <form id="register-form" style="display: none;">
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input type="text" class="input-field" placeholder="John Doe" id="reg-name">
+                </div>
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" class="input-field" placeholder="name@example.com" id="reg-email">
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" class="input-field" placeholder="Create a password" id="reg-password">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
+            </form>
+
+            <div
+                style="text-align: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--glass-border);">
+                <p style="margin-bottom: 0;" id="toggle-text">Don't have an account? <a href="#"
+                        style="color: var(--primary); font-weight: 600;" id="toggle-auth">Sign Up</a></p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
